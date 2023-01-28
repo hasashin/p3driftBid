@@ -1,24 +1,93 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {
+  Button,
+  Grommet,
+  grommet,
+  Page,
+  PageContent,
+  PageHeader,
+  Grid,
+  Sidebar,
+  Text,
+  List,
+} from "grommet";
+import { deepMerge } from "grommet/utils";
+import { P3Counter, P3Header } from "./p3/p3components";
+import { P3Operation } from "./p3/p3utils";
+
+const theme = deepMerge(grommet, {
+  global: {
+    font: {
+      family: "Lato",
+      size: "18px",
+      height: "20px",
+    },
+  },
+});
+
+let state = {
+  P3Operation: P3Operation.Working,
+  lastActionDate: new Date("2023-01-27 10:13:23"),
+  loggedIn: false,
+  user: {
+    fullName: "Dominik Hażak"
+  }
+}
+
 
 function App() {
+  const [dark, setDark] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Grommet theme={theme} full themeMode={dark ? "dark" : "light"}>
+      <Page align="center">
+        <Grid
+          rows={['xsmall', '30vh']}
+          columns={['small','xxlarge', 'small']}
+          areas={[
+            { name: 'header', start: [1, 0], end: [1, 0] },
+            { name: 'main', start: [1, 1], end: [1, 1] },
+            { name: 'side', start: [2, 0], end: [2, 1] },
+          ]}
+          
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <P3Header gridArea='header' dark={ dark } setDark={ setDark }/>
+          <PageContent gridArea='main'>
+            <PageHeader
+                title="P3 DRIFT bidder app"
+                subtitle="Załóż się jak długo P3 DRIFT będzie jeżdzić"
+                actions={ state.loggedIn ?
+                  <Button label={ state.user.fullName } primary /> :
+                  <Button label="Zaloguj się" primary />
+                }
+              />
+            <P3Counter lastActionDate={ state.lastActionDate } P3Operation={ state.P3Operation }/>
+          </PageContent>
+          <Sidebar 
+            gridArea="side"
+            align="center"
+            round="small"
+            header={
+              <Text>Aktualne zakłady</Text>
+            }
+            footer={ state.loggedIn ?
+              <Button label="Dodaj zakład"/> :
+              <Button disabled label="Dodaj zakład"/>
+            }
+          >
+            <List
+              primaryKey="name"
+              secondaryKey="percent"
+              data={[
+                { name: 'Alan', percent: 20 },
+                { name: 'Bryan', percent: 30 },
+                { name: 'Chris', percent: 40 },
+                { name: 'Eric', percent: 80 },
+              ]}
+            />
+          </Sidebar>
+        </Grid>
+      </Page>
+    </Grommet>
   );
 }
 
