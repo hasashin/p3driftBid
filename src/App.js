@@ -26,8 +26,8 @@ const theme = deepMerge(grommet, {
 });
 
 let state = {
-  P3Operation: P3Operation.Working,
-  lastActionDate: new Date("2023-01-27 10:13:23"),
+  P3Operation: P3Operation.Broken,
+  lastActionDate: new Date("2023-02-08 03:00:00"),
   loggedIn: false,
   user: {
     fullName: "Dominik Hażak"
