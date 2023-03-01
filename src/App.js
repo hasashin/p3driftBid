@@ -31,7 +31,8 @@ let state = {
   loggedIn: false,
   user: {
     fullName: "Dominik Hażak"
-  }
+  },
+  showSidebar: false
 }
 
 
@@ -62,7 +63,8 @@ function App() {
               />
             <P3Counter lastActionDate={ state.lastActionDate } P3Operation={ state.P3Operation }/>
           </PageContent>
-          <Sidebar 
+          { state.showSidebar ? (
+            <Sidebar 
             gridArea="side"
             align="center"
             round="small"
@@ -85,6 +87,10 @@ function App() {
               ]}
             />
           </Sidebar>
+          ):
+          (<div></div>)
+          }
+          
         </Grid>
       </Page>
     </Grommet>
