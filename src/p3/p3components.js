@@ -40,7 +40,8 @@ class P3Counter extends React.Component{
         this.state = {
             lastActionDate: props.lastActionDate,
             currentTime: new Date(),
-            P3Operation: props.P3Operation
+            P3Operation: props.P3Operation,
+            carName: props.carName
         };
       }
 
@@ -70,7 +71,7 @@ class P3Counter extends React.Component{
         return (
             <Box align="center" margin="medium">
                 <Box margin="small">
-                    <Text size="xlarge">P3Drift jest { this.state.P3Operation === P3Operation.Working ? " sprawny " : this.state.P3Operation === P3Operation.Broken ? " zepsuty " : " undefined " } już</Text>
+                    <Text size="xlarge">{this.state.carName} jest { this.state.P3Operation === P3Operation.Working ? " sprawny " : this.state.P3Operation === P3Operation.Broken ? " zepsuty " : " undefined " } już</Text>
                 </Box>
                 <Box margin="small">
                     <Text size="xxlarge">

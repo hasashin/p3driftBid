@@ -26,8 +26,10 @@ const theme = deepMerge(grommet, {
 });
 
 let state = {
-  P3Operation: P3Operation.Broken,
-  lastActionDate: new Date("2023-02-08 03:00:00"),
+  P3DriftOperation: P3Operation.Broken,
+  P5SaabOperation: P3Operation.Broken,
+  P3lastActionDate: new Date("2023-02-08 03:00:00"),
+  P5lastActionDate: new Date("2023-11-19 14:00:00"),
   loggedIn: false,
   user: {
     fullName: "Dominik Hażak"
@@ -54,14 +56,16 @@ function App() {
           <P3Header gridArea='header' dark={ dark } setDark={ setDark }/>
           <PageContent gridArea='main'>
             <PageHeader
-                title="P3 DRIFT bidder app"
-                subtitle="Załóż się jak długo P3 DRIFT będzie jeżdzić"
-                actions={ state.loggedIn ?
-                  <Button label={ state.user.fullName } primary /> :
-                  <Button label="Zaloguj się" primary />
-                }
+                title="P3 DRIFT status app"
+                subtitle="Zobacz jak długo auta jeżdżą lub nie."
+                // actions={ state.loggedIn ?
+                //   <Button label={ state.user.fullName } primary /> :
+                //   <Button label="Zaloguj się" primary />
+                // }
               />
-            <P3Counter lastActionDate={ state.lastActionDate } P3Operation={ state.P3Operation }/>
+            <P3Counter lastActionDate={ state.P3lastActionDate } P3Operation={ state.P3DriftOperation } carName="P3Drift"/>
+            <P3Counter lastActionDate={ state.P5lastActionDate } P3Operation={ state.P5SaabOperation } carName="P5Saab"/>
+
           </PageContent>
           { state.showSidebar ? (
             <Sidebar 
