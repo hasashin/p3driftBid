@@ -63,10 +63,11 @@ class P3Counter extends React.Component{
 
     render(){
         let timeDiff = (this.state.currentTime.getTime() - this.state.lastActionDate.getTime())/1000
-        let days = Math.floor(timeDiff/86400);
-        let hours = Math.floor((timeDiff-(days*86400))/3600);
-        let mins = Math.floor((timeDiff-(days*86400)-(hours*3600))/60);
-        let secs = Math.floor(timeDiff-(days*86400)-(hours*3600)-(mins*60));
+        let years = Math.floor(timeDiff/31536000);
+        let days = Math.floor((timeDiff-(years*31536000))/86400);
+        let hours = Math.floor((timeDiff-(years*31536000)-(days*86400))/3600);
+        let mins = Math.floor((timeDiff-(years*31536000)-(days*86400)-(hours*3600))/60);
+        let secs = Math.floor(timeDiff-(years*31536000)-(days*86400)-(hours*3600)-(mins*60));
 
         return (
             <Box align="center" margin="medium">
@@ -75,10 +76,12 @@ class P3Counter extends React.Component{
                 </Box>
                 <Box margin="small">
                     <Text size="xxlarge">
-                        { days } 
-                            { days === 1 ? " dzień " : " dni " } 
-                        { hours } 
-                            { hours === 1 ? " godzinę " : hours%10 >=2 && hours%10 <=4 && (hours > 15 || hours < 10) ? " godziny " : " godzin " } 
+                        { years ? years : ""}
+                            { years === 0 ? "" : years === 1 ? " rok " : years%10 >=2 && years%10 <=4 && (years > 15 || years < 10) ? " lata " : " lat " }
+                        { days ? days : years ? days : "" } 
+                            { days === 0 && years === 0 ? "" : days === 1 ? " dzień " : " dni " } 
+                        { hours ? hours : days || years ? hours : "" } 
+                            { hours === 0 && days === 0 && years === 0 ? "" : hours === 1 ? " godzinę " : hours%10 >=2 && hours%10 <=4 && (hours > 15 || hours < 10) ? " godziny " : " godzin " } 
                         { mins } 
                             { mins === 1 ? " minutę " : mins%10 >=2 && mins%10 <=4 && (mins > 15 || mins < 10) ? " minuty " : " minut " }  
                         { secs } 
