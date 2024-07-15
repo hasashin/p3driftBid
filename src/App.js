@@ -30,10 +30,10 @@ let state = {
   P3lastActionDate: new Date("2023-02-08 03:00:00"),
   P5SaabOperation: P3Operation.Broken,
   P5lastActionDate: new Date("2024-03-02 00:00:00"),
-  E72Operation: P3Operation.Broken,
+  E72Operation: P3Operation.Working,
   E72lastActionDate: new Date("2023-09-01 06:40:00"),
-  P0WMNMWOperation: P3Operation.Working,
-  P0WMNMWlastActionDate: new Date("2024-06-09 00:00:00"),
+  VolvolotOperation: P3Operation.Working,
+  VolvolotlastActionDate: new Date("2024-06-09 00:00:00"),
   loggedIn: false,
   user: {
     fullName: "Dominik Hażak"
@@ -70,7 +70,7 @@ function App() {
             <P3Counter lastActionDate={ state.P3lastActionDate } P3Operation={ state.P3DriftOperation } carName="P3Drift"/>
             <P3Counter lastActionDate={ state.P5lastActionDate } P3Operation={ state.P5SaabOperation } carName="P5Saab"/>
             <P3Counter lastActionDate={ state.E72lastActionDate } P3Operation={ state.E72Operation } carName="E72"/>
-            <P3Counter lastActionDate={ state.P0WMNMWlastActionDate } P3Operation={ state.P0WMNMWOperation } carName="P0WMNMW"/>
+            <P3Counter lastActionDate={ state.VolvolotlastActionDate } P3Operation={ state.VolvolotOperation } carName="Volvolot"/>
 
           </PageContent>
           { state.showSidebar ? (
