@@ -30,10 +30,10 @@ let state = {
   P3lastActionDate: new Date("2023-02-08 03:00:00"),
   P5SaabOperation: P3Operation.Broken,
   P5lastActionDate: new Date("2024-03-02 00:00:00"),
-  E72Operation: P3Operation.Working,
-  E72lastActionDate: new Date("2024-03-02 00:00:00"),
+  E72Operation: P3Operation.Broken,
+  E72lastActionDate: new Date("2023-09-01 06:40:00"),
   P0WMNMWOperation: P3Operation.Working,
-  P0WMNMWlastActionDate: new Date("2024-03-02 00:00:00"),
+  P0WMNMWlastActionDate: new Date("2024-06-09 00:00:00"),
   loggedIn: false,
   user: {
     fullName: "Dominik Hażak"
